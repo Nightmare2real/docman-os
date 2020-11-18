@@ -2,13 +2,9 @@
 {
     public class DynamicItem
     {
-        public DynamicItem(DynamicItem parrent = null)
-        {
-            if (parrent != null)
-                Fields = new DynamicField(parrent);
-            else
-                Fields = new DynamicField();
-        }
+        public DynamicItem(DynamicItem parrent = null, DynamicItem type = null) =>
+                Fields = new DynamicField(parrent,type);
+
         public DynamicField Fields { get; init; }
 
     }

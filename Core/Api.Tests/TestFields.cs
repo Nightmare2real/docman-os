@@ -58,8 +58,8 @@ namespace Api.Tests
             var res = folder.Fields["c"];
 
             //Arrange
-            Assert.AreEqual(expectedValue, res);
-            
+            Assert.AreEqual(expectedValue, res);            
         }
+
     }
 }

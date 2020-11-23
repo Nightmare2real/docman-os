@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Model
 {
@@ -12,7 +11,7 @@ namespace Model
         //public string CreatedBy { get; set; }
         //public DateTime LastModified { get; set; }
         //public string FullPath { get; set; }
-  
+
         public Document(Folder folder)=>
             Folder = folder ?? throw new ArgumentNullException(nameof(folder));
 

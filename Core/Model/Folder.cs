@@ -7,12 +7,14 @@ namespace Model
     {
         public Folder ParrentFolder { get; init; }
 
+        public List<Folder> SubFolders { get; set; } = new();
+
+        public List<Document> Documents { get; init; } = new();
+
         public Folder(Folder folder = null)
         {
             ParrentFolder = folder;
         }
-
-        public List<Document> Documents { get; init; } = new();
 
         public override object this[string key]
         {

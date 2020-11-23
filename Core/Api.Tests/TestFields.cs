@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace Api.Tests
@@ -10,18 +11,23 @@ namespace Api.Tests
     public class TestFields
     {
         [TestMethod]
-        public void Given_a_folder_when_setting_a_field_it_is_possible_to_read_it_again()
+        public async Task Given_a_folder_when_setting_a_field_it_is_possible_to_read_it_again()
         {
             //Arrange
+            using var ctx = DocumentManager.OpenContext();
             Folder folder = new();
+            ctx.Folders.Add(folder);            
             int a = 1;
             var key = nameof(a);
 
             //Act
             folder[key] = a;
+            await ctx.SaveChangesAsync();
 
             //Assert
             AreEqual(a, folder[key]);
+            AreEqual(1, ctx.Folders.Count);
+            AreEqual(1, DocumentManager.Folders.Count);
         }
 
         [TestMethod]

@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace Model
 {
-    public class Folder
+    public class Folder: FileSystemObject
     {
         public Folder ParrentFolder { get; init; }
 
-        public Folder(Folder folder = null) =>
+        public Folder(Folder folder = null)
+        {
             ParrentFolder = folder;
+        }
 
         public List<Document> Documents { get; init; } = new();
 
-        private readonly Dictionary<string, object> _fields = new();
-
-        public object this[string key]
+        public override object this[string key]
         {
             get
             {

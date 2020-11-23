@@ -11,5 +11,7 @@ namespace Model
         {
             get;set;
         }
+
+        public T Get<T>(string key) => (T)_fields[key];
     }
 }

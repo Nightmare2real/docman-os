@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Model
 {
@@ -9,5 +10,10 @@ namespace Model
 
         public static DocumentContext OpenContext()=>
             new DocumentContext();
+
+        public static void Add(Folder folder)
+        {
+            Folders.Add(folder);
+        }
     }
 }

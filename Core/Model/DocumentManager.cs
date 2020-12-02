@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Model.Interfaces;
 using System.Collections.Generic;
 
 namespace Model
 {
-    public static class DocumentManager
+    public class DocumentManager
     {
+        public IDocumentQueue DocumentQueue { get; set; }
+
         public static List<Folder> Folders { get; } = new List<Folder>();
-        public static List<Document> Document { get; } = new List<Document>();
+        public static List<Document> Documents { get; } = new List<Document>();
 
         public static DocumentContext OpenContext()=>
             new DocumentContext();
@@ -14,6 +16,14 @@ namespace Model
         public static void Add(Folder folder)
         {
             Folders.Add(folder);
+        }
+
+        public static void Add(params Document[] documents)
+        {
+            if (documents is not null)
+            {
+                Documents.AddRange(documents);
+            }
         }
     }
 }

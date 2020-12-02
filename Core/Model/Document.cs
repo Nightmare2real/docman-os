@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace Model
 {
@@ -11,8 +12,8 @@ namespace Model
         //public DateTime LastModified { get; set; }
         //public string FullPath { get; set; }
 
-        public Document(Folder folder)=>
-            Folder = folder ?? throw new ArgumentNullException(nameof(folder));
+        public Document(Folder folder = null)=>
+            Folder = folder;
 
 
         public override object this[string key]
@@ -21,12 +22,12 @@ namespace Model
             {
                 if (_fields.ContainsKey(key))
                     return _fields[key];
-                
+
                 return Folder[key];
             }
             set
             {
-                if (Folder.ContainsKey(key))
+                if (Folder is not null && Folder.ContainsKey(key))
                     throw new InvalidOperationException("It's not possible to edit parrents fields");
                 _fields[key] = value;
             }

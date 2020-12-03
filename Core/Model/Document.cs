@@ -4,15 +4,15 @@ namespace Model
 {
     public class Document : FileSystemObject
     {
-        public Folder Folder { get; }
+        public Folder Folder { init; get; }
 
         //public DateTime CreatedAt { get; set; }
         //public string CreatedBy { get; set; }
         //public DateTime LastModified { get; set; }
         //public string FullPath { get; set; }
 
-        public Document(Folder folder = null)=>
-            Folder = folder;
+        //public Document(Folder folder = null)=>
+        //    Folder = folder;
 
 
         public override object this[string key]

@@ -33,7 +33,7 @@ namespace Api.Tests
         {
             //Arrange
             Folder folder = new();
-            folder.Documents.Add(new Document(folder));
+            folder.Documents.Add(new(){Folder=folder});
             var fieldName = "hej med dig";
             var key = nameof(fieldName);
             folder[key] = fieldName;
@@ -91,7 +91,7 @@ namespace Api.Tests
         {
             //Arrange
             Folder folder = new();
-            folder.Documents.Add(new Document(folder));
+            folder.Documents.Add(new(){Folder=folder});
             var fieldName = 2f;
             var key = nameof(fieldName);
             folder[key] = fieldName;

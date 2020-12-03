@@ -18,23 +18,27 @@ namespace Model
 
         public override object this[string key]
         {
-            get
-            {
-                if(_fields.ContainsKey(key))
-                    return _fields[key];
-                if (ParrentFolder != null)
-                    return ParrentFolder[key];
-                throw new KeyNotFoundException();
-            }
-            set
-            {
-                if(ParrentFolder != null && ParrentFolder.ContainsKey(key))
-                    throw new InvalidOperationException("It's not possible to edit parrents fields");
-                _fields[key] = value;
-            }
+            get => Get<object>(key);
+            set => Set(key, value);
         }
 
         public bool ContainsKey(string key) =>
             _fields.ContainsKey(key);
+
+        public override void Set(string key, object value)
+        {
+            if (ParrentFolder != null && ParrentFolder.ContainsKey(key))
+                throw new InvalidOperationException("It's not possible to edit parrents fields");
+            _fields[key] = value;
+        }
+
+        public override T Get<T>(string key)
+        {
+            if (_fields.ContainsKey(key))
+                return (T)_fields[key];
+            if (ParrentFolder != null)
+                return (T)ParrentFolder[key];
+            throw new KeyNotFoundException();
+        }
     }
 }

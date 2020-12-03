@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 
 namespace Model
 {
@@ -18,19 +17,24 @@ namespace Model
 
         public override object this[string key]
         {
-            get
-            {
-                if (_fields.ContainsKey(key))
-                    return _fields[key];
+            get => Get<object>(key);
+            set => Set(key, value);
+        }
 
-                return Folder[key];
-            }
-            set
-            {
-                if (Folder is not null && Folder.ContainsKey(key))
-                    throw new InvalidOperationException("It's not possible to edit parrents fields");
-                _fields[key] = value;
-            }
+
+        public override T Get<T>(string key)
+        {
+            if (_fields.ContainsKey(key))
+                return (T)_fields[key];
+
+            return (T)Folder[key];
+        }
+
+        public override void Set(string key, object value)
+        {
+            if (Folder is not null && Folder.ContainsKey(key))
+                throw new InvalidOperationException("It's not possible to edit parrents fields");
+            _fields[key] = value;
         }
     }
 }

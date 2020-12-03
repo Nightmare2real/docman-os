@@ -13,17 +13,16 @@ namespace Model
         public static DocumentContext OpenContext()=>
             new DocumentContext();
 
-        public static void Add(Folder folder)
+        public static void Add(params Folder[] folders)
         {
-            Folders.Add(folder);
+            if(folders is not null)
+                Folders.AddRange(folders);
         }
 
         public static void Add(params Document[] documents)
         {
             if (documents is not null)
-            {
                 Documents.AddRange(documents);
-            }
         }
     }
 }
